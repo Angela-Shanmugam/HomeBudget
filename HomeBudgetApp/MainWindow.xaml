@@ -1,0 +1,58 @@
+<Window x:Class="HomeBudgetApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:local="clr-namespace:HomeBudgetApp"
+        mc:Ignorable="d"
+        ResizeMode="CanResizeWithGrip"
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" MinHeight="500" MinWidth="800" Height="500" Width="800">
+        
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Width="auto">
+            <GroupBox Header="Open Files">
+                <StackPanel>
+                    <Button x:Name="BtnNewFile" Content="Create New File" Height="25" Click="BtnNewFile_Click"/>
+                    <Button x:Name="BtnFile" Content="Open File" Height="25" Click="BtnFile_Click"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Filter">
+                <StackPanel>
+                    <TextBlock>Start Date</TextBlock>
+
+                    <DatePicker x:Name="StartDateInput" SelectedDateChanged="StartDateInput_SelectedDateChanged"></DatePicker>
+
+                    <TextBlock Margin="0 5 0 0">End Date</TextBlock>
+                    <DatePicker x:Name="EndDateInput" SelectedDateChanged="EndDateInput_SelectedDateChanged"></DatePicker>
+                    <CheckBox x:Name="CategoryFilterCheckBox" IsEnabled="False" Margin="0 10 0 0" Content="Filter by Category" Click="CategoryFilterCheckBox_Click"></CheckBox>
+                    <ComboBox x:Name="CategoryDropdown" SelectionChanged="CategoryDropdown_SelectionChanged" IsEnabled="False"></ComboBox>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Summary">
+                <StackPanel>
+                    <CheckBox Content="By Month" x:Name="Month" Checked="Summary_Checked" Unchecked="Summary_Unchecked"></CheckBox>
+                    <CheckBox Content="By Category" x:Name="Category" Checked="Summary_Checked" Unchecked="Summary_Unchecked"></CheckBox>
+
+                </StackPanel>
+            </GroupBox>
+            
+            <GroupBox Header="Add Objects">
+                <StackPanel>
+                    <Button x:Name="BtnAddExpense" IsEnabled="False" Content="Add Expense" Height="25" Click="BtnAddExpense_Click"></Button>
+                    <Button x:Name="BtnAddCategory" IsEnabled="False" Content="Add Category" Height="25" Click="BtnAddCategory_Click"></Button>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+
+        <local:DataGridView x:Name="theDataGridView" Grid.Column="1" ></local:DataGridView>
+
+    </Grid>
+</Window>
